@@ -212,38 +212,85 @@ require_once 'includes/functions.php';
 
     <div class="row g-4">
       <?php
-      // Original TripWeave destination cards — using gradient overlays + emoji backgrounds
-      // (Replace with actual photos in /images/ for a production site)
       $destinations = [
-        ['name'=>'Kyoto, Japan',         'tag'=>'Culture',    'grad'=>'linear-gradient(135deg,#1A1A2E,#0D4F5C)',  'icon'=>'🏯', 'stops'=>'12 popular stops'],
-        ['name'=>'Santorini, Greece',    'tag'=>'Beach',      'grad'=>'linear-gradient(135deg,#1e3a5f,#3a7bd5)',  'icon'=>'🌊', 'stops'=>'9 popular stops'],
-        ['name'=>'Banff, Canada',        'tag'=>'Nature',     'grad'=>'linear-gradient(135deg,#1a3a2a,#2d6a4f)',  'icon'=>'🏔️', 'stops'=>'11 popular stops'],
-        ['name'=>'Marrakech, Morocco',   'tag'=>'Adventure',  'grad'=>'linear-gradient(135deg,#3d1f00,#c47a1d)',  'icon'=>'🕌', 'stops'=>'8 popular stops'],
-        ['name'=>'Amalfi Coast, Italy',  'tag'=>'Romance',    'grad'=>'linear-gradient(135deg,#0a3a4a,#1a7a6a)',  'icon'=>'🍋', 'stops'=>'10 popular stops'],
-        ['name'=>'Patagonia, Chile',     'tag'=>'Wilderness', 'grad'=>'linear-gradient(135deg,#2a1a3a,#5a3a7a)',  'icon'=>'🦅', 'stops'=>'7 popular stops'],
+        [
+          'name'    => 'Kyoto, Japan',
+          'tag'     => 'Culture',
+          'image'   => 'images/destinations/kyoto.jpg',
+          'rating'  => '4.9',
+          'stops'   => '12 popular stops',
+          'season'  => 'March – May & Oct – Nov',
+          'desc'    => 'Wander beneath thousands of vermilion Torii gates at Fushimi Inari, lose yourself in serene Arashiyama bamboo groves, and explore centuries-old Zen rock gardens and tranquil tea houses.'
+        ],
+        [
+          'name'    => 'Santorini, Greece',
+          'tag'     => 'Beach & Island',
+          'image'   => 'images/destinations/santorini.jpg',
+          'rating'  => '4.9',
+          'stops'   => '9 popular stops',
+          'season'  => 'April – October',
+          'desc'    => 'Iconic whitewashed cliffside villas cascading into the azure Aegean Sea, blue-domed chapels in Oia, and world-famous caldera sunsets with fresh Mediterranean dining.'
+        ],
+        [
+          'name'    => 'Banff, Canada',
+          'tag'     => 'Nature & Alps',
+          'image'   => 'images/destinations/banff.jpg',
+          'rating'  => '4.8',
+          'stops'   => '11 popular stops',
+          'season'  => 'Year-Round (Summer / Ski)',
+          'desc'    => 'Luminescent turquoise waters of Moraine Lake and Lake Louise, set against dramatic jagged peaks of the Canadian Rockies with wildlife safaris and pristine alpine hiking.'
+        ],
+        [
+          'name'    => 'Marrakech, Morocco',
+          'tag'     => 'Adventure & Culture',
+          'image'   => 'images/destinations/marrakech.jpg',
+          'rating'  => '4.7',
+          'stops'   => '8 popular stops',
+          'season'  => 'October – April',
+          'desc'    => 'An enchanting labyrinth of aromatic spice souks, majestic Moorish architecture, tranquil hidden riad courtyards, and sunset excursions into the desert dunes.'
+        ],
+        [
+          'name'    => 'Amalfi Coast, Italy',
+          'tag'     => 'Romance & Coastal',
+          'image'   => 'images/destinations/amalfi.jpg',
+          'rating'  => '4.9',
+          'stops'   => '10 popular stops',
+          'season'  => 'May – September',
+          'desc'    => 'Pastel villages perched dramatically on towering sea cliffs, fragrant cliffside lemon orchards, secluded azure coves, and unforgettable sunset drives along the coastline.'
+        ],
+        [
+          'name'    => 'Patagonia, Chile',
+          'tag'     => 'Wilderness',
+          'image'   => 'images/destinations/patagonia.jpg',
+          'rating'  => '4.8',
+          'stops'   => '7 popular stops',
+          'season'  => 'November – March',
+          'desc'    => 'Massive granite spires of Torres del Paine, calving glaciers, roaring turquoise rivers, and pure untouched wilderness at the edge of the southern hemisphere.'
+        ],
       ];
       foreach ($destinations as $d): ?>
       <div class="col-md-6 col-lg-4 aos-item">
         <div class="dest-card" role="button" tabindex="0"
-          onclick="openDestModal('<?= e($d['name']) ?>', '<?= e($d['tag']) ?>', '<?= e($d['stops']) ?>')"
+          onclick='openDestModal(<?= json_encode($d, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>)'
           aria-label="View details for <?= e($d['name']) ?>">
 
-          <!-- Gradient background with emoji icon -->
-          <div style="background:<?= $d['grad'] ?>;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;">
-            <?= $d['icon'] ?>
-          </div>
+          <!-- Destination image with smooth zoom on hover -->
+          <img src="<?= e($d['image']) ?>" alt="<?= e($d['name']) ?>" class="dest-card-img" loading="lazy">
 
           <div class="dest-card-overlay">
-            <span class="card-badge"><?= e($d['tag']) ?></span>
+            <div class="dest-card-top">
+              <span class="card-badge"><?= e($d['tag']) ?></span>
+              <span class="card-rating-badge"><i class="bi bi-star-fill"></i> <?= e($d['rating']) ?></span>
+            </div>
             <div>
               <div class="dest-name"><?= e($d['name']) ?></div>
               <div class="dest-sub">
                 <i class="bi bi-geo-alt-fill"></i> <?= e($d['stops']) ?>
               </div>
               <div class="dest-card-detail">
-                <a href="planner.php" style="color:var(--sand);font-size:0.82rem;font-weight:600;text-decoration:none;">
-                  Add to Itinerary <i class="bi bi-plus-circle"></i>
-                </a>
+                <span class="btn-explore-pill">
+                  Explore & Plan <i class="bi bi-arrow-right"></i>
+                </span>
               </div>
             </div>
           </div>
@@ -364,24 +411,34 @@ require_once 'includes/functions.php';
      DESTINATION MODAL
 ════════════════════════════════════════════════ -->
 <div class="modal fade modal-custom" id="destModal" tabindex="-1" aria-labelledby="destModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="destModalLabel">Destination Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content overflow-hidden border-0 shadow-lg" style="border-radius: 20px;">
+      <!-- Hero Image Header with Badge and Close button -->
+      <div class="position-relative" style="height: 250px; overflow: hidden; background-color: var(--dark);">
+        <img id="modalDestImg" src="" alt="Destination" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.85) 100%);"></div>
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgba(0,0,0,0.4); padding: 0.6rem; border-radius: 50%; opacity: 0.9;"></button>
+        <div class="position-absolute bottom-0 start-0 p-4 text-white">
+          <span class="badge mb-2" id="modalDestTag" style="background: var(--teal); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;"></span>
+          <h3 id="modalDestName" class="mb-0 text-white" style="font-family:'Playfair Display',serif; font-size: 1.8rem; font-weight: 700;"></h3>
+        </div>
       </div>
       <div class="modal-body p-4">
-        <h4 id="modalDestName" style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.25rem;"></h4>
-        <p style="color:var(--teal);font-size:0.85rem;font-weight:600;margin-bottom:1rem;" id="modalDestTag"></p>
-        <p style="font-size:0.9rem;color:var(--gray-600);margin-bottom:1.25rem;" id="modalDestStops"></p>
-        <p style="font-size:0.88rem;color:var(--gray-600);">
-          TripWeave lets you build a custom itinerary for any destination. Add stops, set times, and keep notes for each day of your journey.
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-3 text-muted" style="font-size: 0.88rem;">
+          <div><i class="bi bi-geo-alt-fill text-danger me-1"></i><span id="modalDestStops"></span></div>
+          <div><i class="bi bi-star-fill text-warning me-1"></i><span id="modalDestRating"></span></div>
+          <div><i class="bi bi-calendar-event text-primary me-1"></i>Best time: <span id="modalDestSeason"></span></div>
+        </div>
+        <p id="modalDestDesc" style="font-size: 0.95rem; line-height: 1.7; color: var(--gray-700); margin-bottom: 1.25rem;">
         </p>
+        <div class="p-3 rounded-3" style="background: var(--surface); border: 1px solid rgba(0,0,0,0.06); font-size: 0.85rem; color: var(--gray-600);">
+          <i class="bi bi-lightbulb-fill text-warning me-1"></i> TripWeave helps you weave stops, times, and activities into an unforgettable personalized itinerary.
+        </div>
       </div>
-      <div class="modal-footer border-0 pt-0">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="planner.php" class="btn-teal btn">
-          <i class="bi bi-plus-circle"></i> Plan This Trip
+      <div class="modal-footer border-0 p-4 pt-0 d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Close</button>
+        <a href="planner.php" class="btn-teal btn px-4">
+          <i class="bi bi-plus-circle me-1"></i> Plan This Trip
         </a>
       </div>
     </div>
@@ -398,10 +455,24 @@ require_once 'includes/functions.php';
 <?php renderFlash(); ?>
 
 /* ── Destination modal handler ───────────────────── */
-function openDestModal(name, tag, stops) {
-  document.getElementById('modalDestName').textContent  = name;
-  document.getElementById('modalDestTag').textContent   = '🏷 ' + tag;
-  document.getElementById('modalDestStops').textContent = '📍 ' + stops;
+function openDestModal(dest) {
+  if (typeof dest === 'string') {
+    document.getElementById('modalDestName').textContent = dest;
+    new bootstrap.Modal(document.getElementById('destModal')).show();
+    return;
+  }
+  document.getElementById('modalDestName').textContent    = dest.name;
+  document.getElementById('modalDestTag').textContent     = dest.tag;
+  document.getElementById('modalDestStops').textContent   = dest.stops;
+  document.getElementById('modalDestRating').textContent  = dest.rating + ' (Top Rated)';
+  document.getElementById('modalDestSeason').textContent  = dest.season || 'Year-round';
+  document.getElementById('modalDestDesc').textContent    = dest.desc;
+
+  const imgEl = document.getElementById('modalDestImg');
+  if (imgEl && dest.image) {
+    imgEl.src = dest.image;
+    imgEl.alt = dest.name;
+  }
   new bootstrap.Modal(document.getElementById('destModal')).show();
 }
 

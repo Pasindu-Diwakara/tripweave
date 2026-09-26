@@ -1,128 +1,185 @@
-# TripWeave — Travel Itinerary Planner
+﻿<div align="center">
+
+<img src="https://img.shields.io/badge/TripWeave-Travel%20Planner-14919B?style=for-the-badge&logo=map&logoColor=white" alt="TripWeave"/>
+
+# 🗺️ TripWeave — Travel Itinerary Planner
 
 > *Weave your perfect journey, day by day.*
 
-**TripWeave** is a full-stack travel itinerary web application built for the ICT2206 Web Technologies module. It lets users plan multi-day trips by organizing destinations and activities into a clean, day-by-day schedule — all backed by a PHP/MySQL backend with secure authentication.
+[![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)]()
+
+<br/>
+
+**TripWeave** is a full-stack travel itinerary web application built with **PHP**, **MySQL**, **Bootstrap 5**, and **Vanilla JavaScript**.
+Plan multi-day trips, organize your destinations, and travel with confidence — all in one beautiful interface.
+
+[🐛 Report Bug](../../issues) &nbsp;·&nbsp; [✨ Request Feature](../../issues)
+
+</div>
 
 ---
 
-## Features Implemented
+## 📸 Preview
 
-### Frontend
-| Feature | Details |
-|---|---|
-| **Responsive Layout** | Bootstrap 5 grid — works on mobile, tablet, and desktop |
-| **Dynamic Itinerary Updates** | Add/remove stops without page reload (JS state); live trip summary panel |
-| **Custom Date Picker** | Vanilla JS date picker (`datepicker.js`) — no external libraries |
-| **Form Validation** | Client-side (`validate.js`) + server-side for all forms |
-| **Smooth Scrolling** | In-page anchor links on the Home page |
-| **Event Handling** | Hover effects, tooltips, Bootstrap modals (destination detail, stop detail, delete confirmation) |
-| **CSS Animations** | `popIn` on new stops, `slideUp` on scroll, `float` on hero card, `pulse-ring` on route dots |
-| **Scroll Progress Bar** | Thin gradient bar at the very top of the page |
-| **4 Pages** | Home, Planner, Dashboard, Contact |
+<div align="center">
 
-### Backend
-| Feature | Details |
-|---|---|
-| **Auth** | Register / Login / Logout with PHP sessions |
-| **Password Security** | `password_hash(PASSWORD_BCRYPT)` + `password_verify()` |
-| **Session Security** | `session_regenerate_id(true)` on login |
-| **Prepared Statements** | All DB queries use `bind_param()` — no raw SQL concatenation |
-| **XSS Prevention** | `htmlspecialchars()` / `e()` on every output; `sanitize()` on every input |
-| **IDOR Protection** | Trip/stop ownership verified via `user_id` before any write |
-| **Flash Messages** | One-time session messages across redirects |
-| **Contact Form** | Saves to DB; PHPMailer stub included (commented out) |
-| **Cascade Deletes** | Deleting a trip also removes all its stops (FK `ON DELETE CASCADE`) |
+| 🏠 Home Page | 📅 Planner | 📊 Dashboard |
+|:---:|:---:|:---:|
+| *Landing page with hero section, destinations & features* | *Day-by-day itinerary builder* | *All trips at a glance* |
 
-### Visual Identity
-- **Colors:** Deep Teal (`#14919B`) + Warm Sand (`#F2C07A`) + Coral Orange (`#E07B54`) on a dark navy (`#1A2634`) base
-- **Fonts:** Playfair Display (headings) + Inter (body) via Google Fonts
-- **Logo:** "T" mark in a rounded square, gradient wordmark "TripWeave" — consistent across all pages
+</div>
 
 ---
 
-## File Structure
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎨 Frontend
+- **Responsive Design** — Bootstrap 5 grid (mobile-first)
+- **Dynamic Itinerary** — Add/remove stops without page reload
+- **Custom Date Picker** — Vanilla JS, no external libraries
+- **Form Validation** — Client-side + server-side
+- **CSS Animations** — `popIn`, `slideUp`, `float`, `pulse-ring`
+- **Scroll Progress Bar** — Gradient bar at the top
+- **4 Full Pages** — Home, Planner, Dashboard, Contact
+
+</td>
+<td width="50%">
+
+### 🔒 Backend & Security
+- **Auth System** — Register / Login / Logout with PHP sessions
+- **bcrypt Passwords** — `password_hash(PASSWORD_BCRYPT)`
+- **SQL Injection Prevention** — Prepared statements everywhere
+- **XSS Prevention** — `htmlspecialchars()` on all output
+- **IDOR Protection** — Ownership verified before every write
+- **Session Security** — `session_regenerate_id(true)` on login
+- **Flash Messages** — One-time session messages across redirects
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | HTML5, CSS3, Vanilla JavaScript, Bootstrap 5, Bootstrap Icons |
+| **Backend** | PHP 8.x |
+| **Database** | MySQL 8.x (MySQLi with prepared statements) |
+| **Typography** | Google Fonts — Playfair Display + Inter |
+| **Local Server** | XAMPP / WAMP |
+
+---
+
+## 📁 Project Structure
 
 ```
-project/
-├── css/
-│   └── style.css           Main stylesheet (variables, components, animations)
-├── js/
-│   ├── main.js             Global: scroll progress, back-to-top, AOS, navbar
-│   ├── datepicker.js       Custom vanilla-JS date picker (single + range mode)
-│   ├── planner.js          Itinerary planner: stop state, day tabs, summary
-│   └── validate.js         Reusable client-side form validation utilities
-├── images/                 (Place any custom images here)
-├── includes/
-│   ├── db.php              MySQLi database connection
-│   └── functions.php       Helpers: sanitize, redirect, flash, isLoggedIn, e(), fmtDate()
-├── auth/
-│   ├── register.php        Registration handler + form
-│   ├── login.php           Login handler + form
-│   └── logout.php          Session destroy + redirect
-├── index.php               Home / Landing page
-├── planner.php             Itinerary Planner (create trip + add/remove stops)
-├── dashboard.php           User dashboard (all trips, stats, delete)
-├── contact.php             Contact form (saves to messages table)
-├── database.sql            Schema + sample data (import via phpMyAdmin)
-└── README.md               This file
+tripweave/
+│
+├── 📁 auth/
+│   ├── login.php           # Login handler + form
+│   ├── register.php        # Registration handler + form
+│   └── logout.php          # Session destroy + redirect
+│
+├── 📁 css/
+│   └── style.css           # Main stylesheet (variables, components, animations)
+│
+├── 📁 js/
+│   ├── main.js             # Global: scroll progress, back-to-top, AOS, navbar
+│   ├── datepicker.js       # Custom vanilla-JS date picker (single + range mode)
+│   ├── planner.js          # Itinerary planner: stop state, day tabs, summary
+│   └── validate.js         # Reusable client-side form validation utilities
+│
+├── 📁 includes/
+│   ├── db.php              # MySQLi database connection
+│   └── functions.php       # Helpers: sanitize, redirect, flash, isLoggedIn, e()
+│
+├── 📁 images/              # Static assets & images
+│
+├── index.php               # 🏠 Home / Landing page
+├── planner.php             # 📅 Itinerary Planner (create trip + add/remove stops)
+├── dashboard.php           # 📊 User Dashboard (all trips, stats, delete)
+├── contact.php             # 📬 Contact form (saves to DB)
+├── database.sql            # 🗄️  Schema + sample data
+└── README.md               # 📖 You are here!
 ```
 
 ---
 
-## How to Run Locally (XAMPP / WAMP)
+## 🚀 Getting Started
 
 ### Prerequisites
-- [XAMPP](https://www.apachefriends.org/) or [WAMP](https://www.wampserver.com/) installed
-- Apache and MySQL services started
 
-### Step 1 — Copy Files
-1. Copy the entire `project/` folder into your web server's document root:
-   - **XAMPP:** `C:\xampp\htdocs\tripweave\`
-   - **WAMP:** `C:\wamp64\www\tripweave\`
+- ✅ [XAMPP](https://www.apachefriends.org/) or [WAMP](https://www.wampserver.com/) installed
+- ✅ Apache and MySQL services **started**
+- ✅ PHP 8.x
 
-### Step 2 — Import the Database
-1. Open your browser and go to `http://localhost/phpmyadmin`
-2. Click **"Import"** in the top navigation bar
-3. Click **"Choose File"** and select `project/database.sql`
-4. Scroll down and click **"Go"**
-5. You should see a success message — the `tripweave` database is now ready
+### Installation
 
-   > **Alternative (command line):**
-   > ```bash
-   > mysql -u root -p < database.sql
-   > ```
+**1. Clone the repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/tripweave.git
+```
 
-### Step 3 — Configure Database (if needed)
-Open `project/includes/db.php` and check/update:
+**2. Move to your server root**
+```
+# XAMPP (Windows)
+C:\xampp\htdocs\tripweave\
+
+# WAMP (Windows)
+C:\wamp64\www\tripweave\
+```
+
+**3. Import the database**
+
+Open `http://localhost/phpmyadmin` → **Import** → Select `database.sql` → **Go**
+
+Or via command line:
+```bash
+mysql -u root -p < database.sql
+```
+
+**4. Configure database connection**
+
+Open `includes/db.php` and update if needed:
 ```php
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');        // Add your password if MySQL requires one
+define('DB_PASS', '');        // Add your MySQL password if needed
 define('DB_NAME', 'tripweave');
 ```
 
-### Step 4 — Open in Browser
-Navigate to:
+**5. Open in browser** 🎉
 ```
 http://localhost/tripweave/index.php
 ```
 
 ---
 
-## Sample Login Credentials
-A sample account is included in `database.sql`:
+## 🔑 Demo Credentials
 
-| Field    | Value              |
-|----------|--------------------|
-| Email    | `alex@example.com` |
-| Password | `Password1`        |
+A sample account is seeded in `database.sql` for quick testing:
 
-> ⚠️ This is for development/demo only. The password is stored as a bcrypt hash in the database — it is never stored in plain text.
+| Field | Value |
+|---|---|
+| **Email** | `alex@example.com` |
+| **Password** | `Password1` |
+
+> ⚠️ **Note:** This account is for **development/demo only**. Passwords are stored as bcrypt hashes — never in plain text.
 
 ---
 
-## JavaScript Features (Summary)
+## ⚡ JavaScript Features
 
 | Feature | File | Trigger |
 |---|---|---|
@@ -135,29 +192,71 @@ A sample account is included in `database.sql`:
 | Scroll progress bar | `main.js` | Window scroll |
 | Back-to-top button | `main.js` | Scroll past 400px |
 | Animate on scroll | `main.js` | IntersectionObserver |
-| Destination modal | `index.php` inline | Click destination card |
-| Stop detail modal | `planner.php` inline | Click eye icon |
-| Delete confirm modal | `dashboard.php` inline | Click delete button |
-| CSS hover transitions | `style.css` | CSS `:hover` pseudo-class |
+| Destination modal | `index.php` | Click destination card |
+| Stop detail modal | `planner.php` | Click eye icon |
+| Delete confirm modal | `dashboard.php` | Click delete button |
 
 ---
 
-## PHP Security Checklist
+## 🔐 Security Checklist
 
 - [x] `password_hash(PASSWORD_BCRYPT)` — passwords never stored in plain text
 - [x] `password_verify()` — used for login comparison
 - [x] `session_regenerate_id(true)` — session fixation prevention
-- [x] Prepared statements (`bind_param`) — SQL injection prevention
+- [x] Prepared statements with `bind_param()` — SQL injection prevention
 - [x] `htmlspecialchars()` / `e()` on all output — XSS prevention
 - [x] `strip_tags()` + `trim()` on all input — input sanitization
 - [x] Ownership check before delete/update — IDOR prevention
 - [x] Flash messages via session — safe across redirects
+- [x] Cascade deletes — deleting a trip removes all its stops (FK `ON DELETE CASCADE`)
 
 ---
 
-## Credits
+## 🎨 Design System
 
-- **Bootstrap 5** — CSS framework / grid system
-- **Bootstrap Icons** — Icon library
-- **Google Fonts** — Playfair Display + Inter typography
-- Built for **ICT2206 Web Technologies** module
+| Token | Value | Usage |
+|---|---|---|
+| **Primary** | `#14919B` (Deep Teal) | Buttons, links, accents |
+| **Secondary** | `#F2C07A` (Warm Sand) | Highlights, badges |
+| **Accent** | `#E07B54` (Coral Orange) | CTA, warnings |
+| **Background** | `#1A2634` (Dark Navy) | Page background |
+| **Heading Font** | Playfair Display | All headings |
+| **Body Font** | Inter | All body text |
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](../../issues).
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 🙏 Credits & Acknowledgements
+
+- **[Bootstrap 5](https://getbootstrap.com/)** — CSS framework & grid system
+- **[Bootstrap Icons](https://icons.getbootstrap.com/)** — Icon library
+- **[Google Fonts](https://fonts.google.com/)** — Playfair Display + Inter
+- Built with ❤️ for **ICT2206 Web Technologies** module
+
+---
+
+<div align="center">
+
+Made with ❤️ by **TripWeave Team**
+
+⭐ **Star this repo if you find it helpful!** ⭐
+
+</div>

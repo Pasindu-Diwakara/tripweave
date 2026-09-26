@@ -225,7 +225,7 @@ $totalDays = $currentTrip ? tripDays($currentTrip['start_date'], $currentTrip['e
       <span style="color:rgba(255,255,255,0.6);font-size:0.85rem;">Planner</span>
     </div>
     <h1 class="planner-title">
-      <?= $currentTrip ? '✈️ ' . e($currentTrip['trip_name']) : '🗺 Itinerary Planner' ?>
+      <?= $currentTrip ? '<i class="bi bi-airplane-engines me-2"></i>' . e($currentTrip['trip_name']) : '<i class="bi bi-map me-2"></i>Itinerary Planner' ?>
     </h1>
     <p class="planner-sub">
       <?php if ($currentTrip): ?>

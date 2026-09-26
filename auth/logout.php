@@ -26,7 +26,7 @@ session_destroy();
 // Redirect to home with a goodbye flash
 // We use a new session briefly just to pass the flash message
 session_start();
-$_SESSION['flash'] = ['type' => 'success', 'message' => 'You have been logged out. See you soon! ✈️'];
+$_SESSION['flash'] = ['type' => 'success', 'message' => 'You have been logged out. See you soon!'];
 
 header('Location: ../index.php');
 exit;

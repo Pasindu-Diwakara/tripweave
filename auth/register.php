@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $username;
             $_SESSION['email']    = $email;
 
-            setFlash('success', "Welcome to TripWeave, {$username}! Start planning your first trip. ✈️");
+            setFlash('success', "Welcome to TripWeave, {$username}! Start planning your first trip.");
             redirect('../dashboard.php');
         } else {
             $stmt->close();

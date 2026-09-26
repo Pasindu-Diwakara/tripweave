@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['username'];
             $_SESSION['email']    = $user['email'];
 
-            setFlash('success', "Welcome back, {$user['username']}! ✈️");
+            setFlash('success', "Welcome back, {$user['username']}!");
             redirect('../dashboard.php');
         }
     }

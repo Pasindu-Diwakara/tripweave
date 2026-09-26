@@ -67,7 +67,7 @@ require_once 'includes/functions.php';
     <div class="row align-items-center">
       <!-- Left: Copy -->
       <div class="col-lg-6 animate-slideUp">
-        <div class="section-label" style="color:var(--sand);">✦ Your Journey Starts Here</div>
+        <div class="hero-badge-pill"><i class="bi bi-stars"></i> Your Journey Starts Here</div>
         <h1 class="hero-title">
           Weave Your<br>
           <span class="highlight">Perfect Journey</span><br>
@@ -107,8 +107,8 @@ require_once 'includes/functions.php';
       <!-- Right: Visual card -->
       <div class="col-lg-6 hero-visual animate-slideUp stagger-3">
         <div class="hero-map-card">
-          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:1.25rem;">
-            📍 Sample Itinerary — Kyoto, Japan
+          <div class="d-flex align-items-center gap-2" style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:1.25rem;">
+            <i class="bi bi-geo-alt-fill" style="color:var(--orange);"></i> Sample Itinerary — Kyoto, Japan
           </div>
 
           <!-- Route stops -->
@@ -135,7 +135,7 @@ require_once 'includes/functions.php';
           <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:0.78rem;color:rgba(255,255,255,0.5);">2 days · 4 stops</span>
             <a href="planner.php" style="background:var(--teal);color:white;font-size:0.78rem;font-weight:700;padding:0.4rem 1rem;border-radius:50px;text-decoration:none;">
-              Build Yours →
+              Build Yours <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
@@ -337,7 +337,11 @@ require_once 'includes/functions.php';
 ════════════════════════════════════════════════ -->
 <section style="background:linear-gradient(135deg,var(--teal-dark),var(--dark));padding:5rem 0;text-align:center;">
   <div class="container">
-    <div class="aos-item" style="color:var(--sand);font-size:2rem;margin-bottom:1rem;">✈️</div>
+    <div class="aos-item mb-3">
+      <div style="width:58px;height:58px;border-radius:50%;background:rgba(242,192,122,0.15);border:1px solid rgba(242,192,122,0.35);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+        <i class="bi bi-send-fill" style="color:var(--sand);font-size:1.5rem;transform:rotate(-15deg);"></i>
+      </div>
+    </div>
     <h2 style="font-family:'Playfair Display',serif;color:white;font-size:clamp(1.75rem,4vw,3rem);margin-bottom:1rem;" class="aos-item">
       Ready to Weave Your Adventure?
     </h2>
@@ -401,8 +405,7 @@ require_once 'includes/functions.php';
     </div>
     <hr class="footer-divider">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <p class="footer-copy mb-0">&copy; <?= date('Y') ?> TripWeave. Built for ICT2206 Web Technologies.</p>
-      <p class="footer-copy mb-0">Crafted with <span style="color:var(--orange);">♥</span> and vanilla PHP</p>
+      <p class="footer-copy mb-0">&copy; <?= date('Y') ?> TripWeave. All rights reserved.</p>
     </div>
   </div>
 </footer>

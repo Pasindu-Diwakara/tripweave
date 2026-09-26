@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 <img src="https://img.shields.io/badge/TripWeave-Travel%20Planner-14919B?style=for-the-badge&logo=map&logoColor=white" alt="TripWeave"/>
 
@@ -249,7 +249,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - **[Bootstrap 5](https://getbootstrap.com/)** — CSS framework & grid system
 - **[Bootstrap Icons](https://icons.getbootstrap.com/)** — Icon library
 - **[Google Fonts](https://fonts.google.com/)** — Playfair Display + Inter
-- Built with ❤️ for **ICT2206 Web Technologies** module
 
 ---
 

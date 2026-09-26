@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
       <div>
         <div class="section-label" style="color:var(--sand);">Your Space</div>
         <h1 style="color:white;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:0.4rem;">
-          Welcome back, <?= e($username) ?> ✈️
+          Welcome back, <?= e($username) ?>
         </h1>
         <p style="color:rgba(255,255,255,0.65);font-size:0.95rem;margin:0;">
           You have <strong><?= count($trips) ?></strong> trip<?= count($trips) !== 1 ? 's' : '' ?> planned.
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
   <?php if (empty($trips)): ?>
   <!-- Empty state -->
   <div class="empty-dashboard text-center">
-    <span class="icon-big">🗺</span>
+    <span class="icon-big"><i class="bi bi-map"></i></span>
     <h3 style="font-family:'Playfair Display',serif;margin-bottom:0.75rem;">No Trips Yet</h3>
     <p style="color:var(--gray-400);max-width:380px;margin:0 auto 2rem;font-size:0.95rem;">
       Your adventure awaits! Create your first trip and start adding destinations.
